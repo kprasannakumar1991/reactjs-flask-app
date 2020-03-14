@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Header from './components/Header';
+import Resource from './components/Resource';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const App = () => {
+    return (
+        <div className="ui container">
+            <Header title="System Resource Utilization" subTitle="from SmartCow" />
+            <Resource refreshInterval={1000} samples={50}/>
+        </div>
+    )
+};
+
+ReactDOM.render(
+    <App />,
+    document.querySelector('#root')
+);
