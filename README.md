@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic information about the app.
+This web application front-end is written in React.js and backend is written in Python Flask.
 
-## Available Scripts
+The backend server is a REST-api server and thus does not serve any html pages or static files.
+The front end makes REST calls to fetch data from the backend flask-server.
+(The react.js code is hosted in another development server created automatically by create-react-app environment)
 
-In the project directory, you can run:
+The app shows the resource usage (CPU, Memory etc...) of your computer in your local machine's web browser.
 
-### `yarn start`
+**Requirement: Your machine should have Node.js and Python3 installed. Kindly check for the same!**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## How to deploy and install dependencies
+1. Clone the code or download the code into your local machine.
+2. Go to the root folder of the app using the **Terminal**.
+3. Type **npm install**
+   *This will install all the javascript libraries mentioned inside package.json file.
+   A node_modules/ folder will be created inside the project's root folder after all the dependencies are installed.*
+4. Go to the api/ folder,**cd api**.
+5. Type **phyton -m venv venv**
+   *This will create a Python virtual environment inside the api/ folder.*
+6. Type **source venv/bing/activate**
+   *This will activate Python virtual environment*.
+7. Type **pip install -r requirements.txt**
+   *This will install all dependent python libraries required for the project.*
+   Later after using the app you can deactivate or come out of Python virtual environment by typing **deactivate**
 
-### `yarn test`
+## How to run the application
+   Now when you have installed all the react.js and flask dependencies in your local machine, time is to run the app.
+1. Open a new **Terminal**
+2. Open 2 tabs
+3. Inside both the tabs go to the project root folder.
+4. In the first tab type **yarn start**
+    *This is start the local server which is hosting the react.js front-end app.*
+     **Automatically your browser should open-up with url as localhost:3000**   
+5. In the second tab type **yarn start-api**
+   *This will start the backend flask server at port 5000*
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+6. If you want to run the unit test case, open a new terminal tab, go to the project root folder and type **yarn test-api**
+    (Unit test cases are written to test the backend server REST functionality)   
