@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+import {Label as SemanticLabel} from 'semantic-ui-react';
+
 import Label from './Label';
 import Chart from './Chart';
 
@@ -11,6 +13,8 @@ const Resource = (props) => {
 
     const [currentValue, setCurrentValue] = useState({'cpu':0, 'memory':0});
     const [values, setValues] = useState([]);
+
+    const [currentGpus, setCurrentGpus] = useState([])
 
     useEffect(()=> {
         const interval = setInterval(()=> {
@@ -34,6 +38,8 @@ const Resource = (props) => {
                             return [previousValues[previousValues.length-1]];
                         }
                     })
+
+                    setCurrentGpus(data.gpus);
                 })
 
         }, refreshInterval)
@@ -46,17 +52,54 @@ const Resource = (props) => {
         {key: 'memory', label: 'memory usage', value: currentValue.memory + ' %'}
     ]
 
+    const gpuItems = []
+    for (var index=0; index < currentGpus.length; index++) {
+        var gpu = currentGpus[index];
+
+        var item = {
+            key: `gpu +${index}`,
+            label: `${gpu.name}`,
+            value: `${gpu.load} %`
+        }
+
+        gpuItems.push(item);
+    }
+
+    function renderGpuInformation () {
+        if (currentGpus.length > 0) {
+            return (
+                <div>
+                    <br/>
+                    <SemanticLabel>GPUs</SemanticLabel>
+                    <Label items={gpuItems}/>
+                    <div className="ui divider"></div>
+                </div>
+            )
+        }
+
+        return null;
+    }
+
+    function renderCpuAndMemoryInformation() {
+        return (
+            <div>
+                <br/>
+                <SemanticLabel>CPU and Memory</SemanticLabel>
+                <Label items={items}/>
+                <Chart
+                    cpuValues={values.map((item) => item.cpu)}
+                    memoryValues={values.map((item) => item.memory)}
+                    samples={samples}
+                />
+            </div>
+        )
+    }
+
     return (
         <div>
             <div className="ui divider"></div>
-            <div className="ui raised segment">
-                <Label items={items}/>
-            </div>
-            <Chart
-                cpuValues={values.map((item) => item.cpu)}
-                memoryValues={values.map((item) => item.memory)}
-                samples={samples}
-            />
+                {renderGpuInformation()}
+                {renderCpuAndMemoryInformation()}
         </div>
     )
 }

@@ -37,5 +37,11 @@ class TestCase(unittest.TestCase):
         response = tester.get('/resource', content_type="application/json")
         self.assertEqual(response.content_type, 'application/json')
 
+    def test_api_gpu(self):
+        tester = app.test_client(self)
+        response = tester.get('/gpus', content_type="application/json")
+        data = json.loads(response.get_data())
+        self.assertIsNotNone(data)
+
 if __name__ == '__main__':
     unittest.main()
